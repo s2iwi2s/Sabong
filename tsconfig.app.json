@@ -2,13 +2,13 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./out-tsc/app",
+    "outDir": "./target/classes/static/out-tsc/app",
     "types": []
   },
   "files": [
-    "src/main.ts"
+    "./src/main/webapp/src/main.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "./src/main/webapp/src/**/*.d.ts"
   ]
 }
