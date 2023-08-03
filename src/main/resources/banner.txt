@@ -14,7 +14,8 @@ ${AnsiColor.BRIGHT_GREEN}
 :::::::::::::::::::::::::::::::::::::::::::::::
 
 ${AnsiColor.BRIGHT_YELLOW}::${spring.application.name} ::${application.version}
-${AnsiColor.BRIGHT_YELLOW}=> Port: ${server.port}
+${AnsiColor.BRIGHT_YELLOW}=> URL: http://localhost:${server.port}
+${AnsiColor.BRIGHT_YELLOW}=> API: http://localhost:${server.port}/swagger-ui/index.html
 ${AnsiColor.BRIGHT_YELLOW}=> DS URL: ${spring.datasource.url}
 ${AnsiColor.BRIGHT_YELLOW}=> DS Username: ${spring.datasource.username}
 ${AnsiColor.BRIGHT_YELLOW}=> Profile(s): ${spring.profiles.active}
