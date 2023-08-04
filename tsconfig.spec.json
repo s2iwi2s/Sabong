@@ -4,7 +4,8 @@
   "compilerOptions": {
     "outDir": "./target/classes/static/out-tsc/spec",
     "types": [
-      "jasmine"
+      "jasmine",
+      "@angular/localize"
     ]
   },
   "include": [
