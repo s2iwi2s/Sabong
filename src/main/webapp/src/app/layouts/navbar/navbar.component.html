@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/" (click)="collapseNavbar()">
       <span class="navbar-title">SabongApp</span>
-      <span class="navbar-version">{{ version }}</span>
+      <span class="navbar-version">{{ version }} - [{{env}}]</span>
     </a>
     <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse"
        data-target="#navbarResponsive"
@@ -16,7 +16,7 @@
           <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
             <span class="">
               <fa-icon icon="home"></fa-icon>
-              <span>Home</span>
+              <span class="px-1">Home</span>
             </span>
           </a>
         </li>
@@ -26,7 +26,7 @@
              data-cy="accountMenu">
             <span *ngIf="!getImageUrl()">
               <fa-icon icon="user"></fa-icon>
-              <span>Account</span>
+              <span class="px-1">Account</span>
             </span>
             <span *ngIf="getImageUrl()">
               <img [src]="getImageUrl()" class="profile-image rounded-circle" alt="Avatar"/>
@@ -39,13 +39,13 @@
                  (click)="collapseNavbar()"
                  data-cy="passwordItem">
                 <fa-icon icon="lock" [fixedWidth]="true"></fa-icon>
-                <span>Password</span>
+                <span class="px-1">Password</span>
               </a>
             </li>
             <li *ngSwitchCase="true">
               <a class="dropdown-item" (click)="logout()" id="logout" data-cy="logout">
                 <fa-icon icon="sign-out-alt" [fixedWidth]="true"></fa-icon>
-                <span>Sign out</span>
+                <span class="px-1">Sign out</span>
               </a>
             </li>
             <li *ngSwitchCase="false">

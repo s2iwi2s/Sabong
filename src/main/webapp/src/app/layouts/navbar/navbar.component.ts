@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-navbar',
@@ -9,8 +10,10 @@ import {Router} from "@angular/router";
 export class NavbarComponent {
   isNavbarCollapsed = true;
   version = '';
+  env = '';
 
   constructor(private router: Router) {
+    this.env = environment.env;
   }
   collapseNavbar(): void {
     this.isNavbarCollapsed = true;

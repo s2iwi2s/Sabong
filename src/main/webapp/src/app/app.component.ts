@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Title} from "@angular/platform-browser";
 import {ActivatedRouteSnapshot, NavigationEnd, Router} from "@angular/router";
+import {environment} from "../environments/environment";
+import {AppConfigService} from "./shared/services/config/app-config.service";
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,13 @@ import {ActivatedRouteSnapshot, NavigationEnd, Router} from "@angular/router";
 export class AppComponent implements OnInit {
   title = 'SabongApp';
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private appConfigService: AppConfigService) {
+
   }
 
   ngOnInit(): void {
+    this.appConfigService.setEndpoint(environment.API_URL);
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.updateTitle();

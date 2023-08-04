@@ -14,6 +14,7 @@
 	<name>Sabong</name>
 	<description>Sabong</description>
 	<properties>
+		<app.env>development</app.env>
 		<java.version>17</java.version>
 		<springdoc.version>2.1.0</springdoc.version>
 		<springdoc-openapi-maven-plugin.version>1.4</springdoc-openapi-maven-plugin.version>
@@ -100,13 +101,6 @@
 					<configuration>
 						<source>1.8</source>
 						<target>1.8</target>
-						<!-- See https://maven.apache.org/plugins/maven-compiler-plugin/compile-mojo.html -->
-						<!-- Classpath elements to supply as annotation processor path. If specified, the compiler   -->
-						<!-- will detect annotation processors only in those classpath elements. If omitted, the     -->
-						<!-- default classpath is used to detect annotation processors. The detection itself depends -->
-						<!-- on the configuration of annotationProcessors.                                           -->
-						<!--                                                                                         -->
-						<!-- According to this documentation, the provided dependency processor is not considered!   -->
 						<annotationProcessorPaths>
 							<path>
 								<groupId>org.mapstruct</groupId>
@@ -131,6 +125,15 @@
 	</build>
 	<profiles>
 		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
 			<id>dev</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -147,8 +150,27 @@
 				</dependency>
 			</dependencies>
 			<properties>
-				<!-- default Spring profiles -->
 				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-undertow</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-devtools</artifactId>
+					<optional>true</optional>
+				</dependency>
+			</dependencies>
+			<properties>
+				<spring.profiles.active>local</spring.profiles.active>
 			</properties>
 		</profile>
 		<profile>
@@ -195,7 +217,7 @@
 								</goals>
 								<phase>generate-resources</phase>
 								<configuration>
-									<arguments>run build</arguments>
+									<arguments>run build-${spring.profiles.active}</arguments>
 									<workingDirectory>${frontend.dir}</workingDirectory>
 									<installDirectory>${vendor.installDirectory.dir}</installDirectory>
 									<environmentVariables>
