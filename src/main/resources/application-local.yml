@@ -1,7 +1,7 @@
 logging:
   level:
     ROOT: INFO
-    com.s2i: INFO
+    com.s2i: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
@@ -24,4 +24,4 @@ spring:
       hibernate.format_sql: true
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none

@@ -78,12 +78,6 @@
               "outputHashing": "all"
             },
             "local": {
-              "fileReplacements": [
-                {
-                  "replace": "src/main/webapp/src/environments/environment.ts",
-                  "with": "src/main/webapp/src/environments/environment.ts"
-                }
-              ],
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,

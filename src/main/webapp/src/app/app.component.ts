@@ -12,12 +12,12 @@ export class AppComponent implements OnInit {
   title = 'SabongApp';
 
   constructor(private router: Router, private appConfigService: AppConfigService) {
+    this.appConfigService.setENV(environment);
 
+    console.log(`Actuator Endpoint: `, this.appConfigService.getEndpointFor("/actuator"))
   }
 
   ngOnInit(): void {
-    this.appConfigService.setEndpoint(environment.API_URL);
-
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.updateTitle();

@@ -1,8 +1,8 @@
 <nav data-cy="navbar" class="navbar navbar-dark navbar-expand-lg bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/" (click)="collapseNavbar()">
-      <span class="navbar-title">SabongApp</span>
-      <span class="navbar-version">{{ version }} - [{{env}}]</span>
+      <span class="navbar-title">{{appName}}</span>
+      <span class="navbar-version px-1">{{ appVersion }}{{env}}</span>
     </a>
     <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse"
        data-target="#navbarResponsive"
