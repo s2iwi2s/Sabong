@@ -1,3 +1,5 @@
+${AnsiColor.BRIGHT_RED}
+=> sabong
 ${AnsiColor.BRIGHT_GREEN}
 :::::::::::::::::::::::::::::::::::::::::::::::
 ${AnsiColor.BRIGHT_WHITE}

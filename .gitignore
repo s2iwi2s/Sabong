@@ -271,4 +271,4 @@ build/
 ### VS Code ###
 .vscode/
 
-package-lock.json
+sabong-web/package-lock.json

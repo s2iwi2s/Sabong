@@ -1,0 +1,27 @@
+logging:
+  level:
+    ROOT: INFO
+    com.s2i: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+spring:
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://postgres-db:5432/sabong_dev
+    username: sabong_dev
+    password: sabong
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+  jpa:
+    properties:
+      hibernate.format_sql: true
+    show-sql: true
+    hibernate:
+      ddl-auto: none
