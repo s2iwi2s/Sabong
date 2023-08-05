@@ -1,6 +1,5 @@
 package com.s2i.sabong.web.rest;
 
-
 import com.s2i.sabong.service.dto.UserDTO;
 import com.s2i.sabong.service.services.UserService;
 import com.s2i.sabong.web.config.Constants;
@@ -12,12 +11,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
-@RestController(Constants.URL_API_BASE + UserResource.URL_BASE)
+@RestController
+@RequestMapping(path = Constants.URL_API_BASE + UserResource.URL_BASE)
 public class UserResource {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -39,6 +40,12 @@ public class UserResource {
         log.debug("REST request to save UserDTO : {}", userDTO);
         if (userDTO.getLogin() == null) {
             throw new BadRequestAlertException("A new user cannot  have null login", ENTITY_NAME, "nulllogin");
+        }
+        if (userDTO.getEmail() == null) {
+            throw new BadRequestAlertException("A new user cannot  have null email", ENTITY_NAME, "nullemail");
+        }
+        if (userDTO.getPassword() == null) {
+            throw new BadRequestAlertException("A new user cannot  have null password", ENTITY_NAME, "nullpassword");
         }
         UserDTO result = userService.save(userDTO);
         return ResponseEntity

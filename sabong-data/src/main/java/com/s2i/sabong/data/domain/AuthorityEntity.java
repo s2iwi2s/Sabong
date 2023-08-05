@@ -13,13 +13,15 @@ import lombok.*;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(name = "authority", schema = "sabong")
+@Table(name = "authority", schema = "sabong", catalog = "sabong_dev")
 public class AuthorityEntity {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @NotNull
     @Size(max = 50)
-    @Id
-    @Column(length = 50)
+    @Column(length = 50, unique = true, nullable = false)
     private String name;
 
     @Size(max = 250)

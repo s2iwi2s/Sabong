@@ -13,10 +13,13 @@ import java.util.Set;
 @EqualsAndHashCode
 @ToString
 public class UserDTO {
+    private Long id;
     private String login;
+    private String password;
     private String email;
     private String firstName;
     private String lastName;
     private boolean activated;
+
     private Set<AuthorityEntity> authorities = new HashSet<>();
 }

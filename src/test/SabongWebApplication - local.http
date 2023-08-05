@@ -1,0 +1,18 @@
+POST http://localhost:8181/api/user
+Content-Type: application/json
+
+{
+  "login": "stoi",
+  "password": "admin",
+  "email": "s2iwi2s@gmail.com",
+  "firstName": "Winston",
+  "lastName": "Pidor",
+  "activated": true,
+  "createdBy": "wpidor",
+  "createdDate": "2023-01-2023",
+  "lastModifiedBy": "wpidor",
+  "lastModifiedDate": "2023-01-2023"
+}
+
+###
+

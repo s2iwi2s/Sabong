@@ -5,5 +5,5 @@ import com.s2i.sabong.service.dto.UserDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring", uses = {})
-public interface UserMapper extends EntityMapper<UserDTO, UserEntity>{
+public interface UserMapper extends EntityMapper<UserDTO, UserEntity> {
 }
