@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, String> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
     String USERS_BY_LOGIN_CACHE = "usersByLogin";
     String USERS_BY_EMAIL_CACHE = "usersByEmail";
     Optional<UserEntity> findOneByLogin(String login);

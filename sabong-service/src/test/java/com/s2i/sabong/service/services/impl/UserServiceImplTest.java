@@ -40,7 +40,6 @@ class UserServiceImplTest {
     private DateTimeProvider dateTimeProvider;
 
     private UserDTO userDTO;
-
     @BeforeEach
     public void init() {
         userDTO = createDTO();
@@ -49,14 +48,43 @@ class UserServiceImplTest {
     @Test
     @Transactional
     void testSave() {
-        UserDTO savedUser = userService.save(userDTO);
-        assertThat(Optional.of(savedUser).orElse(null).getId()).isNotNull();
+        UserDTO savedUserDTO = userService.save(userDTO);
+        assertThat(Optional.of(savedUserDTO).orElse(null).getId()).isNotNull();
 
-        Optional<UserEntity> maybeUser = userRepository.findOneByLogin(DEFAULT_LOGIN);
+        Optional<UserEntity> maybeUserEntity = userRepository.findOneByLogin(DEFAULT_LOGIN);
+        assertThat(maybeUserEntity).isPresent();
+        assertThat(maybeUserEntity.orElse(null).getId()).isEqualTo(savedUserDTO.getId());
+        assertThat(maybeUserEntity.orElse(null).getLogin()).isEqualTo(savedUserDTO.getLogin());
+        assertThat(maybeUserEntity.orElse(null).getEmail()).isEqualTo(savedUserDTO.getEmail());
+    }
+
+    @Test
+    @Transactional
+    void testUpdate() {
+        UserDTO savedUserDTO = userService.save(userDTO);
+        final String newLogin = DEFAULT_LOGIN + "X";
+        savedUserDTO.setLogin(newLogin);
+        savedUserDTO.setPassword(RandomStringUtils.random(60) + "X");
+        savedUserDTO.setActivated(false);
+        savedUserDTO.setEmail(DEFAULT_EMAIL + "X");
+//        savedUserDTO.setFirstName(DEFAULT_FIRSTNAME + "X");
+//        savedUserDTO.setLastName(DEFAULT_LASTNAME + "X");
+
+        Optional<UserDTO> savedUserDTOOptional = userService.partialUpdate(savedUserDTO);
+        assertThat(savedUserDTOOptional.orElse(null).getId()).isNotNull();
+
+        Optional<UserEntity> maybeUser = userRepository.findOneByLogin(newLogin);
         assertThat(maybeUser).isPresent();
-        assertThat(maybeUser.orElse(null).getId()).isEqualTo(savedUser.getId());
-        assertThat(maybeUser.orElse(null).getLogin()).isEqualTo(savedUser.getLogin());
-        assertThat(maybeUser.orElse(null).getEmail()).isEqualTo(savedUser.getEmail());
+        assertThat(savedUserDTOOptional.orElse(null).getId()).isNotNull();
+        assertThat(savedUserDTOOptional.orElse(null).getId()).isEqualTo(savedUserDTO.getId());
+
+        assertThat(maybeUser.orElse(null).getLogin()).isNotEqualTo(userDTO.getLogin());
+        assertThat(maybeUser.orElse(null).getPassword()).isNotEqualTo(userDTO.getPassword());
+        assertThat(maybeUser.orElse(null).isActivated()).isNotEqualTo(userDTO.isActivated());
+        assertThat(maybeUser.orElse(null).getEmail()).isNotEqualTo(userDTO.getEmail());
+
+        assertThat(maybeUser.orElse(null).getFirstName()).isEqualTo(userDTO.getFirstName());
+        assertThat(maybeUser.orElse(null).getLastName()).isEqualTo(userDTO.getLastName());
     }
 
     public UserDTO createDTO() {
