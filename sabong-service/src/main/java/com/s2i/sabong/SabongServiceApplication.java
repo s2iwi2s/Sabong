@@ -1,13 +1,13 @@
-package com.s2i.sabong.web;
+package com.s2i.sabong;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SabongWebApplication {
+public class SabongServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SabongWebApplication.class, args);
+		SpringApplication.run(SabongServiceApplication.class, args);
 	}
 
 }
