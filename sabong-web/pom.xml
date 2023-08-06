@@ -41,8 +41,6 @@
             <artifactId>sabong-service</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <!--
-        -->
         <dependency>
             <groupId>com.s2i</groupId>
             <artifactId>sabong-security</artifactId>
@@ -93,6 +91,7 @@
             <version>0.29.1</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>

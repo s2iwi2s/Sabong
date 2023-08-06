@@ -1,7 +1,9 @@
+
 spring:
   application.name: sabong
   profiles:
     active: #spring.profiles.active#
+  mvc.pathmatch.matching-strategy: ant_path_matcher
   jpa:
     open-in-view: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -80,6 +82,10 @@ appconfig:
     - /eureka/**
   #      - /api/**
   permitAll:
+    - index
+    - index.html
+    - '**.css'
+    - '**.js'
     - /api/authenticate
     - /eureka/**
     - /assets/**
@@ -92,6 +98,7 @@ appconfig:
   #      - /api/**
   #      - /assets/**
   #      - /login
+
   corsFilter:
     - /management/**
     - /v2/api-docs/**
