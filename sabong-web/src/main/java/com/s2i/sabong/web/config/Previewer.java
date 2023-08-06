@@ -3,6 +3,7 @@ package com.s2i.sabong.web.config;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.s2i.sabong.service.config.AppConfigProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
@@ -17,12 +18,12 @@ public class Previewer implements ApplicationListener<ContextRefreshedEvent> {
 	private CacheConfiguration cacheConfiguration;
 	private ObjectMapper objectMapper;
 
-	private AppConfigProperties appConfigProperties;
+	private AppConfigProperties appConfig;
 
-	public Previewer(CacheConfiguration cacheConfiguration, ObjectMapper objectMapper, AppConfigProperties appConfigProperties){
+	public Previewer(CacheConfiguration cacheConfiguration, ObjectMapper objectMapper, AppConfigProperties appConfig){
 		this.cacheConfiguration = cacheConfiguration;
 		this.objectMapper = objectMapper;
-		this.appConfigProperties = appConfigProperties;
+		this.appConfig = appConfig;
 	}
 
 	@Override
@@ -30,7 +31,7 @@ public class Previewer implements ApplicationListener<ContextRefreshedEvent> {
 		log.debug("Previewer.onApplicationEvent - START");
 		log.debug("Cache Configuration Git={}", toJson(cacheConfiguration.getGitProperties()));
 		log.debug("Cache Configuration Build={}", toJson(cacheConfiguration.getBuildProperties()));
-		log.debug("AppConfigProperties={}", toJson(appConfigProperties));
+		log.debug("AppConfigProperties={}", toJson(appConfig));
 
 		log.debug("Previewer.onApplicationEvent - END");
 	}

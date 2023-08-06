@@ -1,6 +1,5 @@
-package com.s2i.sabong.web.config;
+package com.s2i.sabong.service.config;
 
-import com.s2i.sabong.service.config.AppConfigProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @EnableConfigurationProperties(AppConfigProperties.class)

@@ -58,7 +58,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).map(userMapper::toDto);
     }
 
-    public Optional<UserDTO> findOneByLogin(String login) {
-        return userRepository.findOneByLogin(login).map(userMapper::toDto);
+    public Optional<UserDTO> findOneWithAuthoritiesByLogin(String login) {
+        return userRepository.findOneWithAuthoritiesByLogin(login).map(userMapper::toDto);
     }
+
+
 }

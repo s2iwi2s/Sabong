@@ -1,5 +1,6 @@
 package com.s2i.sabong.web.config;
 
+import com.s2i.sabong.service.config.AppConfigProperties;
 import lombok.Getter;
 import lombok.Setter;
 import org.ehcache.config.builders.CacheConfigurationBuilder;
@@ -26,11 +27,11 @@ public class CacheConfiguration {
     private final BuildProperties buildProperties;
     private final javax.cache.configuration.Configuration<Object, Object> jcacheConfiguration;
 
-    public CacheConfiguration(AppConfigProperties appConfigProperties, GitProperties gitProperties, BuildProperties buildProperties) {
+    public CacheConfiguration(AppConfigProperties appConfig, GitProperties gitProperties, BuildProperties buildProperties) {
         this.gitProperties = gitProperties;
         this.buildProperties = buildProperties;
 
-        AppConfigProperties.Cache.Ehcache ehcache = appConfigProperties.getCache().getEhcache();
+        AppConfigProperties.Cache.Ehcache ehcache = appConfig.getCache().getEhcache();
         jcacheConfiguration =
             Eh107Configuration.fromEhcacheCacheConfiguration(
                 CacheConfigurationBuilder

@@ -1,11 +1,8 @@
 package com.s2i.sabong.service.mapper;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.s2i.sabong.data.domain.UserEntity;
 import com.s2i.sabong.service.dto.UserDTO;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
@@ -13,6 +10,7 @@ import org.mapstruct.factory.Mappers;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserMapperTest {
 

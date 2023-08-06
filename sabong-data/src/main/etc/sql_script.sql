@@ -1,9 +1,8 @@
 -- PostgreSQL: jdbc:postgresql://ubuntu.vm:5432/sabong_dev
 
-drop table sabong.authority cascade;
-drop table sabong.users cascade;
+DROP TABLE sabong.authority CASCADE;
 
-
+DROP TABLE sabong.users CASCADE;
 
 CREATE TABLE sabong.authority
 (
@@ -30,7 +29,11 @@ CREATE TABLE sabong.users
         CONSTRAINT uk_users_email UNIQUE,
     first_name         VARCHAR(50),
     last_name          VARCHAR(50),
-    password_hash      VARCHAR(60) NOT NULL
+    password_hash      VARCHAR(60) NOT NULL,
+    CONSTRAINT uk_users UNIQUE (
+                                LOGIN,
+                                email
+        )
 );
 
 ALTER TABLE sabong.users
@@ -51,6 +54,8 @@ CREATE TABLE sabong.users_authority
 ALTER TABLE sabong.users_authority
     OWNER TO sabong_dev;
 
+----------------------------------------------------------------------------------------------------------------------
+
 INSERT INTO sabong.authority (name, description)
 VALUES ('ROLE_ADMIN', 'Administrator Role');
 
@@ -60,7 +65,15 @@ VALUES ('ROLE_USER', 'User Role');
 INSERT INTO sabong.users (LOGIN, password_hash, first_name, last_name, email, created_by, created_date,
                           last_modified_by, last_modified_date, activated)
 VALUES ('wpidor', '$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC', 'Admin', 'Administrator',
-        's2iwi2s@yahoo.com', 'wpidor', '2023-08-04 15:02:29.377000 +00:00', 'wpidor',
-        '2023-08-04 15:02:36.433000 +00:00', true);
+        's2iwi2s@yahoo.com', 'wpidor', now(), 'wpidor', now(), true);
 
-INSERT INTO sabong.users_authority VALUES (1, 1);
+INSERT INTO sabong.users (LOGIN, password_hash, first_name, last_name, email, created_by, created_date,
+                          last_modified_by, last_modified_date, activated)
+VALUES ('anonymous', '', 'anonymous', 'anonymous', 's2iwi2s@gmail.com', 'wpidor', now(), 'wpidor',
+        now(), true);
+
+INSERT INTO sabong.users_authority
+VALUES (1, 1);
+
+INSERT INTO sabong.users_authority
+VALUES (2, 2);

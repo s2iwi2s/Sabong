@@ -116,6 +116,7 @@
     <modules>
         <module>sabong-data</module>
         <module>sabong-service</module>
+        <module>sabong-security</module>
         <module>sabong-web</module>
     </modules>
 </project>

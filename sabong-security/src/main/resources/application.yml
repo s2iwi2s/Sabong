@@ -1,5 +1,7 @@
+
 spring:
-  application.name: sabong
+  application:
+    name: sabong
   profiles:
     active: #spring.profiles.active#
   jpa:

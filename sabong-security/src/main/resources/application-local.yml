@@ -2,10 +2,16 @@ logging:
   level:
     ROOT: INFO
     com.s2i: DEBUG
-    org.hibernate.SQL: DEBUG
+#    org.hibernate: debug
+    org.hibernate.SQL: error
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator: debug
+    org.springframework.security: trace
+#    org.springframework.web: debug
+
 
 spring:
+  mvc.log-request-details: true
   devtools:
     restart:
       enabled: true
@@ -25,13 +31,3 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
-
-appconfig:
-  cors:
-    allowed-origins: 'http://localhost:4200,https://localhost:4200'
-    allowed-origin-patterns: '*'
-    allowed-methods: '*'
-    allowed-headers: '*'
-    exposed-headers: 'Authorization,Link,X-Total-Count,X-${spring.application.name}-alert,X-${spring.application.name}-error,X-${spring.application.name}-params'
-    allow-credentials: true
-    max-age: 1800

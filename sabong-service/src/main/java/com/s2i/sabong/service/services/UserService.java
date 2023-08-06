@@ -8,5 +8,5 @@ public interface UserService {
     UserDTO save(UserDTO userDTO);
     public Optional<UserDTO> partialUpdate(UserDTO userDTO);
     public Optional<UserDTO> findOne(Long id);
-    public Optional<UserDTO> findOneByLogin(String login);
+    public Optional<UserDTO> findOneWithAuthoritiesByLogin(String login);
 }

@@ -1,8 +1,7 @@
-package com.s2i.sabong.web.config;
+package com.s2i.sabong.service.config;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -17,7 +16,9 @@ import java.util.List;
 @ConfigurationProperties(prefix = "appconfig", ignoreUnknownFields = false)
 public class AppConfigProperties implements Serializable {
 
+    private final Http http = new Http();
     private final Cache cache = new Cache();
+
     private Jwt jwt = new Jwt();
     private CorsConfiguration cors = new CorsConfiguration();
     private List<String> authRequest = new ArrayList<>();
@@ -51,6 +52,7 @@ public class AppConfigProperties implements Serializable {
             }
         }
     }
+
     @Getter
     @Setter
     public static class Jwt {
@@ -64,6 +66,24 @@ public class AppConfigProperties implements Serializable {
             this.base64Secret = null;
             this.tokenValidityInSeconds = 86400L;
             this.tokenValidityInSecondsForRememberMe = 2592000L;
+        }
+    }
+
+    @Getter
+    @Setter
+    public static class Http {
+        private final Cache cache = new Cache();
+
+        public Http() {
+        }
+
+        @Getter
+        @Setter
+        public static class Cache {
+            private int timeToLiveInDays = 1461;
+
+            public Cache() {
+            }
         }
     }
 }

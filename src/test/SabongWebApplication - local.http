@@ -1,5 +1,6 @@
 POST http://localhost:8181/api/user
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3cGlkb3IiLCJhdXRoIjoiIiwiZXhwIjoxNjkzOTA2ODYyfQ.KGm_qvBKc0seZ-pJIYJ8Q33OWXpvsPxi1aqHb8lGGUf9mTz945JnbU0YxxJQMUf4C0Tpi4f-0pzzPIV7DaxpVg
 
 {
   "login": "stoi",
